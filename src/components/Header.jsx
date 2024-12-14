@@ -15,7 +15,7 @@ const Header = () => {
             <p className='absolute font-light text-[#FAFAFA] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
               Summer Sale For All Swim Suits And Free Express Delivery - OFF
               50%!
-              <span className='font-semibold h'> ShopNow</span>
+              <span className='font-semibold '> ShopNow</span>
             </p>
             <p className='absolute top-1/2 left-1/2'></p>
           </div>

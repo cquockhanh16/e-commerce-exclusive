@@ -2,13 +2,13 @@
 
 const SignupForm = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center ">
       <div className="max-w-4xl w-full flex bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="w-1/2 bg-blue-50 p-8 hidden md:block">
           <div className="relative h-full flex items-center justify-center">
             <img 
-              src="/api/placeholder/400/400"
-              alt="Shopping cart with smartphone and shopping bags"
+              src=""
+              alt=""
               className="object-cover rounded-lg"
             />
           </div>
