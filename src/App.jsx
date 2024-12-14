@@ -4,6 +4,9 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import SignupForm from "./pages/Login";
 import Login from "./pages/Singup";
+import FlashSales from "./pages/About";
+
+
 
 
 
@@ -12,6 +15,7 @@ function App() {
     <>
       <Router>
         <Header />
+        <FlashSales/>
         <Routes>
           <Route path='/' exact element={<Home />} />
           <Route path='/signup' exact element={<SignupForm/>} />

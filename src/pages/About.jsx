@@ -1,135 +1,206 @@
-import React from 'react';
-import { ShoppingBag, Headphones, Shield } from 'lucide-react';
+import React, { useState } from 'react';
+import { Heart, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const StatsCard = ({ count, text, isHighlighted }) => (
-  <div className={`text-center p-6 rounded-lg ${isHighlighted ? 'bg-red-500 text-white' : 'bg-white text-gray-600'}`}>
-    <div className="text-3xl font-bold mb-2">{count}</div>
-    <div>{text}</div>
-  </div>
-);
-
-const TeamMember = ({ name, role, image }) => (
-  <div className="text-center">
-    <img src={image} alt={name} className="w-full mb-4" />
-    <h3 className="text-xl font-medium mb-2">{name}</h3>
-    <p className="text-gray-600 mb-4">{role}</p>
-    <div className="flex justify-center gap-4">
-      {['twitter', 'instagram', 'linkedin'].map((social) => (
-        <a key={social} href="#" className="text-gray-600 hover:text-gray-900">
-          <div className="w-6 h-6" />
-        </a>
-      ))}
-    </div>
-  </div>
-);
-
-const ServiceCard = ({ icon: Icon, title, description }) => (
-  <div className="flex flex-col items-center text-center p-6">
-    <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-4">
-      <Icon className="w-6 h-6 text-white" />
-    </div>
-    <h3 className="text-lg font-bold mb-2">{title}</h3>
-    <p className="text-gray-600">{description}</p>
-  </div>
-);
-
-const AboutPage = () => {
-  const stats = [
-    { count: '10.5k', text: 'Sellers active our site' },
-    { count: '33k', text: 'Monthly Products Sale', isHighlighted: true },
-    { count: '45.5k', text: 'Customer active in our site' },
-    { count: '25k', text: 'Annual gross sale in our site' }
-  ];
-
-  const team = [
-    { name: 'Tom Cruise', role: 'Founder & Chairman', image: '/api/placeholder/300/400' },
-    { name: 'Emma Watson', role: 'Managing Director', image: '/api/placeholder/300/400' },
-    { name: 'Will Smith', role: 'Product Designer', image: '/api/placeholder/300/400' }
-  ];
-
-  const services = [
-    {
-      icon: ShoppingBag,
-      title: 'FREE AND FAST DELIVERY',
-      description: 'Free delivery for all orders over $140'
-    },
-    {
-      icon: Headphones,
-      title: '24/7 CUSTOMER SERVICE',
-      description: 'Friendly 24/7 customer support'
-    },
-    {
-      icon: Shield,
-      title: 'MONEY BACK GUARANTEE',
-      description: 'We return money within 30 days'
-    }
-  ];
+const CountdownTimer = () => {
+  const [time] = useState({
+    days: 3,
+    hours: 23,
+    minutes: 19,
+    seconds: 56
+  });
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Breadcrumb */}
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="py-4 flex items-center gap-2 text-sm text-gray-600">
-          <a href="/">Home</a>
-          <span>/</span>
-          <span className="text-gray-900">About</span>
-        </div>
+    <div className="flex items-center gap-4">
+      <div className="flex items-center gap-1">
+        <span className="font-bold text-2xl">{String(time.days).padStart(2, '0')}</span>
+        <span className="text-sm">Days</span>
       </div>
-
-      {/* Story Section */}
-      <section className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-2 gap-12">
-          <div className="space-y-6">
-            <h1 className="text-4xl font-bold">Our Story</h1>
-            <p className="text-gray-600">
-              Launched in 1995, Exclusive is South Asia's premier online shopping marketplace with an active presence in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sellers and 300 brands and serves 3 millions customers across the region.
-            </p>
-            <p className="text-gray-600">
-              Exclusive has more than 1 million products to offer, growing at a very fast. Exclusive offers a diverse assortment in categories ranging from consumer.
-            </p>
-          </div>
-          <div>
-            <img 
-              src="/api/placeholder/600/400" 
-              alt="Happy shoppers"
-              className="w-full h-full object-cover rounded-lg"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((stat, index) => (
-              <StatsCard key={index} {...stat} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-3 gap-8">
-          {team.map((member, index) => (
-            <TeamMember key={index} {...member} />
-          ))}
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <ServiceCard key={index} {...service} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <span className="text-2xl">:</span>
+      <div className="flex items-center gap-1">
+        <span className="font-bold text-2xl">{String(time.hours).padStart(2, '0')}</span>
+        <span className="text-sm">Hours</span>
+      </div>
+      <span className="text-2xl">:</span>
+      <div className="flex items-center gap-1">
+        <span className="font-bold text-2xl">{String(time.minutes).padStart(2, '0')}</span>
+        <span className="text-sm">Minutes</span>
+      </div>
+      <span className="text-2xl">:</span>
+      <div className="flex items-center gap-1">
+        <span className="font-bold text-2xl">{String(time.seconds).padStart(2, '0')}</span>
+        <span className="text-sm">Seconds</span>
+      </div>
     </div>
   );
 };
 
-export default AboutPage;
+const ProductCard = ({ product }) => {
+  const [isWishlist, setIsWishlist] = useState(false);
+
+  return (
+    <div className="group relative">
+      <div className="relative">
+        <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 text-sm rounded">
+          -{product.discount}%
+        </div>
+        
+        <div className="absolute top-2 right-2 flex flex-col gap-2">
+          <button
+            onClick={() => setIsWishlist(!isWishlist)}
+            className="p-2 bg-white rounded-full shadow hover:bg-gray-100"
+          >
+            <Heart className={`w-4 h-4 ${isWishlist ? 'fill-red-500 stroke-red-500' : 'stroke-gray-600'}`} />
+          </button>
+          <button className="p-2 bg-white rounded-full shadow hover:bg-gray-100">
+            <Eye className="w-4 h-4 stroke-gray-600" />
+          </button>
+        </div>
+
+        <img src={product.image} alt={product.name} className="w-full h-64 object-cover" />
+        
+        <button className="absolute bottom-0 left-0 right-0 bg-black text-white py-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          Add To Cart
+        </button>
+      </div>
+
+      <div className="mt-4 space-y-2">
+        <h3 className="font-medium">{product.name}</h3>
+        <div className="flex gap-2">
+          <span className="text-red-500">${product.salePrice}</span>
+          <span className="text-gray-400 line-through">${product.originalPrice}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="flex">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <svg
+                key={star}
+                className={`w-4 h-4 ${star <= product.rating ? 'text-yellow-400' : 'text-gray-200'}`}
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+          <span className="text-sm text-gray-500">({product.reviews})</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const FlashSales = () => {
+  const allProducts = [
+    {
+      name: 'HAVIT HV-G92 Gamepad',
+      salePrice: 120,
+      originalPrice: 160,
+      discount: 40,
+      rating: 5,
+      reviews: 88,
+      image: '/api/placeholder/300/300'
+    },
+    {
+      name: 'AK-900 Wired Keyboard',
+      salePrice: 960,
+      originalPrice: 1160,
+      discount: 35,
+      rating: 4,
+      reviews: 75,
+      image: '/api/placeholder/300/300'
+    },
+    {
+      name: 'IPS LCD Gaming Monitor',
+      salePrice: 370,
+      originalPrice: 400,
+      discount: 30,
+      rating: 5,
+      reviews: 99,
+      image: '/api/placeholder/300/300'
+    },
+    {
+      name: 'S-Series Comfort Chair',
+      salePrice: 375,
+      originalPrice: 400,
+      discount: 25,
+      rating: 4,
+      reviews: 98,
+      image: '/api/placeholder/300/300'
+    },
+    {
+      name: 'S-Series Comfort Chair 2',
+      salePrice: 375,
+      originalPrice: 400,
+      discount: 25,
+      rating: 4,
+      reviews: 98,
+      image: '/api/placeholder/300/300'
+    }
+  ];
+
+  const [startIndex, setStartIndex] = useState(0);
+  const itemsToShow = 4; // Số sản phẩm hiển thị cùng lúc
+
+  const handlePrevious = () => {
+    setStartIndex(prevIndex => Math.max(0, prevIndex - 1));
+  };
+
+  const handleNext = () => {
+    setStartIndex(prevIndex => 
+      Math.min(allProducts.length - itemsToShow, prevIndex + 1)
+    );
+  };
+
+  const currentProducts = allProducts.slice(startIndex, startIndex + itemsToShow);
+  const canGoPrevious = startIndex > 0;
+  const canGoNext = startIndex + itemsToShow < allProducts.length;
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="flex justify-between items-center mb-8">
+        <div className="space-y-4">
+          <div className="flex items-center gap-4">
+            <div className="w-5 h-10 bg-red-500" />
+            <span className="text-red-500 font-medium">Today's</span>
+          </div>
+          <div className="flex items-center gap-20">
+            <h2 className="text-3xl font-semibold">Flash Sales</h2>
+            <CountdownTimer />
+          </div>
+        </div>
+        <div className="flex gap-2">
+          <button 
+            onClick={handlePrevious}
+            disabled={!canGoPrevious}
+            className={`p-2 border rounded-full hover:bg-gray-100 transition-colors
+              ${!canGoPrevious ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button 
+            onClick={handleNext}
+            disabled={!canGoNext}
+            className={`p-2 border rounded-full hover:bg-gray-100 transition-colors
+              ${!canGoNext ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {currentProducts.map((product, index) => (
+          <ProductCard key={startIndex + index} product={product} />
+        ))}
+      </div>
+
+      <div className="text-center mt-8">
+        <button className="px-8 py-3 bg-red-500 text-white rounded hover:bg-red-600 transition">
+          View All Products
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default FlashSales;
